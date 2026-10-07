@@ -24,11 +24,19 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "lib/**/*.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules",
+    "test",
+    "scripts",
+    "contracts"
+  ],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs",
