@@ -1,6 +1,6 @@
 # BotCounter
 
-A simple, clean on-chain counter dApp built on **Botchain Testnet**.
+A simple, clean on-chain counter dApp built on **Botchain Mainnet**.
 
 BotCounter demonstrates basic smart contract state modifications on-chain. It is intentionally simple, lightweight, and beginner-friendly with no external databases, backends, or unnecessary bloat.
 
@@ -14,7 +14,7 @@ BotCounter demonstrates basic smart contract state modifications on-chain. It is
 - **Wallet Connection**: Connect and disconnect Web3 wallets seamlessly using wagmi and viem.
 - **Transaction Status**: Clear, human-readable lifecycle states (wallet confirmation, submission, confirmation, failure, rejection).
 - **Botchain Explorer Links**: Instant clickable links directly to transactions on Botchain Explorer.
-- **Botchain Testnet Support**: Built-in network detection and chain switching to Botchain Testnet (Chain ID 968).
+- **Botchain Mainnet Support**: Built-in network detection and chain switching to Botchain Mainnet (Chain ID 677).
 
 ---
 
@@ -37,11 +37,14 @@ BotCounter demonstrates basic smart contract state modifications on-chain. It is
 
 ## Network Details
 
-- **Network**: Botchain Testnet
-- **Chain ID**: `968`
-- **RPC URL**: `https://rpc.bohr.life`
-- **Explorer**: `https://scan.bohr.life`
+### Botchain Mainnet
+- **Network**: Botchain Mainnet
+- **Chain ID**: `677`
+- **RPC URL**: `https://rpc.botchain.ai`
+- **Explorer**: `https://scan.botchain.ai`
 - **Native Token**: `BOT`
+- **Total Supply**: `150 Million`
+- **Contract Address**: `0x5aa25723c4c701fa8B7028e7ea7881a8bb8A6fFE`
 
 ---
 
@@ -56,14 +59,14 @@ cp .env.example .env
 Configure the following variables in `.env`:
 
 ```env
-# The deployed BotCounter contract address on Botchain Testnet
-NEXT_PUBLIC_BOT_COUNTER_ADDRESS=
+# The deployed BotCounter contract address on Botchain Mainnet
+NEXT_PUBLIC_BOT_COUNTER_ADDRESS=0x5aa25723c4c701fa8B7028e7ea7881a8bb8A6fFE
 
 # Deployer private key (for contract deployment only; DO NOT commit real keys!)
 PRIVATE_KEY=
 
-# Botchain Testnet RPC endpoint
-BOTCHAIN_RPC_URL=https://rpc.bohr.life
+# Botchain Mainnet RPC endpoint
+BOTCHAIN_RPC_URL=https://rpc.botchain.ai
 ```
 
 > **Security Note:** Never commit private keys or sensitive credentials into source control.
@@ -88,10 +91,10 @@ Run the comprehensive Hardhat test suite:
 npm test
 ```
 
-### 4. Deploy to Botchain Testnet (Optional)
-Ensure `PRIVATE_KEY` with testnet BOT is set in `.env`, then run:
+### 4. Deploy to Botchain Mainnet
+Ensure `PRIVATE_KEY` with BOT is set in `.env`, then run:
 ```bash
-npm run deploy:testnet
+npm run deploy
 ```
 Once deployed, copy the deployed contract address and set it as `NEXT_PUBLIC_BOT_COUNTER_ADDRESS` in `.env`.
 

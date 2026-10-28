@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useAccount, useConnect, useDisconnect, useSwitchChain } from "wagmi";
-import { botchainTestnet } from "@/lib/botchain";
+import { botchain } from "@/lib/botchain";
 import { Wallet, LogOut, AlertTriangle, ArrowLeftRight, CheckCircle2 } from "lucide-react";
 
 export function WalletButton() {
@@ -37,14 +37,14 @@ export function WalletButton() {
     );
   }
 
-  const isWrongNetwork = chain?.id !== botchainTestnet.id;
+  const isWrongNetwork = chain?.id !== botchain.id;
 
   // Connected on wrong network
   if (isWrongNetwork) {
     return (
       <div className="flex items-center gap-2">
         <button
-          onClick={() => switchChain({ chainId: botchainTestnet.id })}
+          onClick={() => switchChain({ chainId: botchain.id })}
           disabled={isSwitching}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 text-xs font-medium transition-all"
         >

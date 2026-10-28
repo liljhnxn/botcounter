@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-const BOTCHAIN_RPC_URL = process.env.BOTCHAIN_RPC_URL || "https://rpc.bohr.life";
+const BOTCHAIN_RPC_URL = process.env.BOTCHAIN_RPC_URL || "https://rpc.botchain.ai";
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
 
 const config: HardhatUserConfig = {
@@ -17,25 +17,26 @@ const config: HardhatUserConfig = {
       },
     },
   },
+  defaultNetwork: "botchainMainnet",
   networks: {
     hardhat: {},
-    botchainTestnet: {
+    botchainMainnet: {
       url: BOTCHAIN_RPC_URL,
-      chainId: 968,
+      chainId: 677,
       accounts: PRIVATE_KEY && PRIVATE_KEY.trim() !== "" ? [PRIVATE_KEY.startsWith("0x") ? PRIVATE_KEY : `0x${PRIVATE_KEY}`] : [],
     },
   },
   etherscan: {
     apiKey: {
-      botchainTestnet: "empty",
+      botchainMainnet: "empty",
     },
     customChains: [
       {
-        network: "botchainTestnet",
-        chainId: 968,
+        network: "botchainMainnet",
+        chainId: 677,
         urls: {
-          apiURL: "https://scan.bohr.life/api",
-          browserURL: "https://scan.bohr.life",
+          apiURL: "https://scan.botchain.ai/api",
+          browserURL: "https://scan.botchain.ai",
         },
       },
     ],

@@ -6,8 +6,8 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "BotCounter | On-Chain Counter on Botchain Testnet",
-  description: "A simple, clean on-chain counter dApp demonstrating basic smart-contract state changes on Botchain Testnet.",
+  title: "BotCounter | On-Chain Counter on Botchain Mainnet",
+  description: "A simple, clean on-chain counter dApp demonstrating basic smart-contract state changes on Botchain Mainnet.",
   icons: {
     icon: "/icon.svg",
   },

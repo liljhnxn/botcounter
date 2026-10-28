@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import { botCounterAbi, BOT_COUNTER_ADDRESS, isContractConfigured } from "@/lib/contract";
-import { botchainTestnet } from "@/lib/botchain";
+import { botchain } from "@/lib/botchain";
 import { Plus, Minus, ExternalLink, Loader2, CheckCircle2, AlertCircle, ShieldAlert } from "lucide-react";
 
 type TxStatus = "idle" | "awaiting_wallet" | "submitted" | "confirmed" | "rejected" | "failed";
@@ -68,7 +68,7 @@ export function CounterCard() {
     }
   }, [isReceiptError]);
 
-  const isWrongNetwork = isConnected && chain?.id !== botchainTestnet.id;
+  const isWrongNetwork = isConnected && chain?.id !== botchain.id;
   const isPending = txStatus === "awaiting_wallet" || isConfirming;
 
   const currentCount = typeof countData === "bigint" ? countData : 0n;
@@ -89,7 +89,7 @@ export function CounterCard() {
 
     if (isWrongNetwork) {
       setTxStatus("failed");
-      setStatusMessage("Please switch to Botchain Testnet.");
+      setStatusMessage("Please switch to Botchain Mainnet.");
       return;
     }
 
@@ -222,7 +222,7 @@ export function CounterCard() {
           {/* Wrong network warning */}
           {isConnected && isWrongNetwork && (
             <p className="text-xs text-amber-400 mt-4">
-              Please switch to Botchain Testnet to send transactions.
+              Please switch to Botchain Mainnet to send transactions.
             </p>
           )}
 
@@ -265,16 +265,48 @@ export function CounterCard() {
                     Tx: {txHash.slice(0, 10)}...{txHash.slice(-8)}
                   </span>
                   <a
-                    href={`https://scan.bohr.life/tx/${txHash}`}
+                    href={`https://scan.botchain.ai/tx/${txHash}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-cyan-400 hover:text-cyan-300 font-medium underline-offset-4 hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs text-cyan-400 hover:text-cyan-300 font-medium underline-offset-4 hover:underline"
                   >
-                    <span>View on Botchain Explorer</span>
+                    <img
+                      src="/botchain-logo.png"
+                      alt="BOT Chain"
+                      className="w-3.5 h-3.5 rounded object-cover"
+                    />
+                    <span>BOT Chain explorer</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Mainnet Contract Explorer Link */}
+          {isContractConfigured && BOT_COUNTER_ADDRESS && (
+            <div className="mt-6 pt-5 border-t border-surfaceBorder/60 w-full flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-gray-400">Mainnet Contract:</span>
+                <span className="font-mono text-cyan-300 font-semibold" title={BOT_COUNTER_ADDRESS}>
+                  {BOT_COUNTER_ADDRESS.slice(0, 6)}...{BOT_COUNTER_ADDRESS.slice(-4)}
+                </span>
+              </div>
+              <a
+                href={`https://scan.botchain.ai/address/${BOT_COUNTER_ADDRESS}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 font-medium transition-colors hover:underline"
+              >
+                <img
+                  src="/botchain-logo.png"
+                  alt="BOT Chain"
+                  className="w-3.5 h-3.5 rounded object-cover"
+                />
+                <span>BOT Chain explorer</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
           )}
         </div>

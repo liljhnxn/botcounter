@@ -66,7 +66,8 @@ export const botCounterAbi = [
   },
 ] as const;
 
-export const rawContractAddress = process.env.NEXT_PUBLIC_BOT_COUNTER_ADDRESS?.trim() || "";
+export const rawContractAddress =
+  process.env.NEXT_PUBLIC_BOT_COUNTER_ADDRESS?.trim() || "0x5aa25723c4c701fa8B7028e7ea7881a8bb8A6fFE";
 
 export const isContractConfigured = Boolean(
   rawContractAddress &&
@@ -75,5 +76,5 @@ export const isContractConfigured = Boolean(
 );
 
 export const BOT_COUNTER_ADDRESS = (
-  isContractConfigured ? rawContractAddress : undefined
-) as `0x${string}` | undefined;
+  isContractConfigured ? rawContractAddress : "0x5aa25723c4c701fa8B7028e7ea7881a8bb8A6fFE"
+) as `0x${string}`;
